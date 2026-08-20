@@ -1,0 +1,785 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>トーキョーハナリズム | フラワーショップのランディングページ</title>
+
+<style>
+  :root{
+    
+    --brand:#123a63;
+    --b-92:rgba(18,58,99,.92);
+    --b-70:rgba(18,58,99,.70);
+    --b-55:rgba(18,58,99,.55);
+    --b-30:rgba(18,58,99,.30);
+    --b-16:rgba(18,58,99,.16);
+    --b-08:rgba(18,58,99,.08);
+    --b-05:rgba(18,58,99,.05);
+    --paper:#ffffff;
+    --paper-2:#f4f7fa;       
+    --ink:#1d1c1c;           
+    --ink-soft:#5b5b5b;
+    --slot-bg:rgba(18,58,99,.05);
+    --slot-line:#9fb0c2;
+    --slot-edge:#7286a0;     
+    --r:6px;                 
+    
+    --s1:12px; --s2:24px; --s3:48px; --s4:72px; --s5:96px; --s6:192px;
+    --en:Georgia,"Times New Roman",serif;                      
+    --mn:"Hiragino Mincho ProN","Yu Mincho",YuMincho,serif;    
+    --jp:"Hiragino Kaku Gothic ProN","Yu Gothic Medium","Yu Gothic",Meiryo,sans-serif;
+    --hd:64px;               
+  }
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:var(--jp);font-size:14px;
+    line-height:1.9;letter-spacing:.04em;
+    font-feature-settings:"palt";
+    -webkit-font-smoothing:antialiased;
+  }
+  img{max-width:100%}
+  a{color:var(--ink);text-decoration:none}
+  
+  .np{display:inline-block}
+  .ln{display:block;white-space:nowrap}
+  
+  a[href^="tel:"]{pointer-events:none;cursor:text}
+
+  
+  
+  .ph{position:relative;overflow:hidden;background:#e8ecf1;
+    border:1px dashed var(--slot-edge);border-radius:var(--r)}
+  .ph::after{ 
+    content:attr(data-slot);position:absolute;right:6px;bottom:6px;
+    max-width:calc(100% - 12px);
+    font-family:var(--en);font-size:10px;letter-spacing:.12em;
+    color:rgba(18,58,99,.72);background:rgba(255,255,255,.88);
+    padding:3px 9px;border:1px solid var(--slot-edge);border-radius:2px;
+    line-height:1.7;text-align:right}
+
+  
+  header{
+    position:fixed;inset:0 0 auto 0;z-index:50;min-height:var(--hd);
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+    padding:9px 3vw;background:rgba(255,255,255,.95);
+    border-bottom:1px solid var(--b-16);backdrop-filter:blur(6px);
+  }
+  
+  .brand{display:flex;flex-direction:column;line-height:1.3;white-space:nowrap}
+  .brand__jp{font-family:var(--mn);font-size:clamp(15px,1.3vw,19px);
+    letter-spacing:.08em}
+  .brand__en{font-family:var(--en);font-size:10px;letter-spacing:.2em;
+    color:var(--b-55)}
+  nav{display:flex;gap:26px;align-items:center;white-space:nowrap}
+  nav a{position:relative;font-size:13px;letter-spacing:.1em}
+  
+  nav a::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:1px;
+    background:var(--brand);transform:scaleX(0);transform-origin:left center;
+    transition:transform .35s ease}
+  nav a:hover::after{transform:scaleX(1)}
+  .hgroup{display:flex;align-items:center;gap:16px;white-space:nowrap}
+  
+  .htel{display:flex;flex-direction:column;line-height:1.25;text-align:right}
+  .htel__name{font-size:10px;letter-spacing:.12em;color:var(--b-55)}
+  .htel__no{font-family:var(--en);font-size:17px;letter-spacing:.04em;
+    color:var(--brand)}
+  .hcta{background:var(--brand);color:#fff;border-radius:var(--r);
+    padding:11px 20px;font-size:13px;letter-spacing:.12em;
+    transition:background-color .3s ease}
+  .hcta:hover{background:var(--b-70)}
+
+  
+  .band{display:inline-block;background:var(--brand);color:#fff;
+    border-radius:var(--r);padding:5px 16px;
+    font-size:13px;letter-spacing:.16em;line-height:1.8}
+
+  
+  .block{max-width:1180px;margin:0 auto;padding:0 4vw}
+  .gap{margin-top:var(--s5)}
+  .sec-head{margin-bottom:var(--s3)}
+  .sec-head .en{display:block;font-family:var(--en);font-size:12px;
+    letter-spacing:.34em;color:var(--b-55)}
+  .sec-head h2{font-family:var(--mn);font-weight:500;margin-top:6px;
+    font-size:clamp(21px,2.3vw,29px);line-height:1.6;letter-spacing:.22em}
+  
+  .long-text{font-size:clamp(18px,1.8vw,23px);letter-spacing:.18em}
+  .lead{margin-top:var(--s1);max-width:30em;color:var(--ink-soft)}
+
+  
+  
+  .hero{padding-top:calc(var(--hd) + var(--s3));padding-bottom:var(--s2)}
+  .hero__in{max-width:1180px;margin:0 auto;padding:0 4vw;
+    display:flex;gap:4%;align-items:flex-start}
+  .hero__panel{flex:1 1 auto;min-width:0}
+  .hero__ph{flex:0 0 auto;width:min(38vw,440px);aspect-ratio:3/4}
+  .hero__eyebrow{font-family:var(--en);font-size:11px;letter-spacing:.28em;
+    color:var(--b-55)}
+  .hero__eyebrow .jp{display:inline-block;font-family:var(--jp);
+    font-size:12px;letter-spacing:.14em;margin-left:1.2em;color:var(--ink-soft)}
+  .hero__catch{margin-top:var(--s1);font-family:var(--mn);font-weight:500;
+    font-size:clamp(24px,3.2vw,40px);line-height:1.55;letter-spacing:.22em}
+  .hero .lead{margin-top:var(--s2)}
+
+  
+  .badges{display:grid;grid-template-columns:1fr 1fr;gap:10px;
+    margin-top:var(--s2);list-style:none}
+  .badge{border:1px solid var(--b-16);border-radius:var(--r);
+    background:var(--b-05);padding:9px 14px;
+    font-size:12px;line-height:1.65;letter-spacing:.04em;color:var(--ink-soft)}
+  .badge b{font-weight:600;font-size:135%;letter-spacing:.02em;color:var(--brand)}
+
+  
+  .tt-wrap{margin-top:var(--s3)}
+  .tt{border-collapse:collapse;width:100%;margin-top:var(--s1);
+    font-size:12px;line-height:1.5}
+  .tt th,.tt td{border:1px solid var(--b-16);padding:7px 4px;
+    text-align:center;font-weight:400}
+  .tt thead th{background:var(--b-08);color:var(--brand);letter-spacing:.04em}
+  .tt tbody th{text-align:left;padding-left:10px;white-space:nowrap;
+    color:var(--ink-soft);letter-spacing:.06em}
+  .tt__t{display:block;font-family:var(--en);font-size:11px;
+    letter-spacing:.02em;color:var(--b-70)}
+  .tt tbody td{font-size:13px;color:var(--brand)}
+  .tt-legend{margin-top:10px;font-size:12px;letter-spacing:.06em;
+    color:var(--ink-soft)}
+  .tt-notes{margin-top:6px;list-style:none;font-size:12px;line-height:1.85;
+    color:var(--ink-soft)}
+  .tt-notes li{padding-left:1em;text-indent:-1em}
+
+  
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:var(--s2);
+    list-style:none}
+  .card{border:1px solid var(--b-16);border-radius:var(--r);
+    padding:20px 20px 22px}
+  .card .en{display:block;font-family:var(--en);font-size:11px;
+    letter-spacing:.24em;color:var(--b-55)}
+  .card h3{font-family:var(--mn);font-weight:500;font-size:17px;
+    letter-spacing:.12em;margin-top:4px}
+  .card p{margin-top:8px;font-size:13px;line-height:2;color:var(--ink-soft);
+    max-width:32em}
+  .menu-note{margin-top:var(--s2);padding:16px 18px;border-radius:var(--r);
+    background:var(--paper-2);font-size:12.5px;line-height:1.95;
+    color:var(--ink-soft);max-width:38em}
+
+  
+  .reason{display:flex;gap:6%;align-items:flex-start}
+  .reason__ph{flex:0 0 auto;width:min(40vw,460px);aspect-ratio:3/2}
+  .reason__list{flex:1 1 auto;min-width:0;list-style:none}
+  .reason__list li+li{margin-top:var(--s2)}
+  .reason__no{font-family:var(--en);font-size:12px;letter-spacing:.2em;
+    color:var(--b-55)}
+  .reason__list h3{font-family:var(--mn);font-weight:500;font-size:18px;
+    letter-spacing:.12em;margin-top:2px}
+  .reason__list p{margin-top:6px;font-size:13px;line-height:2;
+    color:var(--ink-soft);max-width:32em}
+
+  
+  .steps{display:grid;grid-template-columns:repeat(4,1fr);gap:var(--s2);
+    list-style:none}
+  .step{border-top:2px solid var(--brand);padding-top:14px}
+  .step .no{font-family:var(--en);font-size:12px;letter-spacing:.2em;
+    color:var(--b-55)}
+  .step h3{font-family:var(--mn);font-weight:500;font-size:16px;
+    letter-spacing:.1em;margin-top:2px}
+  .step p{margin-top:6px;font-size:12.5px;line-height:1.95;color:var(--ink-soft)}
+
+  
+  .doctor{display:flex;gap:6%;align-items:flex-start}
+  .doctor__ph{flex:0 0 auto;width:min(26vw,300px);aspect-ratio:3/4}
+  .doctor__body{flex:1 1 auto;min-width:0}
+  .doctor__name{font-family:var(--mn);font-size:20px;letter-spacing:.14em;
+    margin-top:10px}
+  .doctor__name .kana{font-family:var(--jp);font-size:12px;
+    letter-spacing:.08em;color:var(--ink-soft);margin-left:.8em}
+  .doctor__body p{margin-top:var(--s1);font-size:13.5px;line-height:2.05;
+    color:var(--ink-soft);max-width:34em}
+  .rows{margin-top:var(--s2);max-width:38em}
+  .rows>div{display:flex;border-bottom:1px solid var(--b-16);padding:10px 2px}
+  .rows dt{flex:0 0 8.5em;font-size:12.5px;color:var(--b-55);letter-spacing:.08em}
+  .rows dd{flex:1 1 auto;min-width:0;font-size:13px}
+
+  
+  .access{display:flex;gap:6%;align-items:flex-start}
+  .access__info{flex:1 1 48%;min-width:0}
+  .access__map{flex:0 1 46%;aspect-ratio:4/3}
+  .access .tel-no{font-family:var(--en);font-size:16px;letter-spacing:.04em;
+    color:var(--brand)}
+
+  
+  .reserve{max-width:1180px;margin-left:auto;margin-right:auto;padding:0 4vw}
+  .reserve__in{background:var(--paper-2);border-radius:var(--r);
+    padding:var(--s4) 6vw;text-align:center}
+  .reserve__in .en{display:block;font-family:var(--en);font-size:12px;
+    letter-spacing:.34em;color:var(--b-55)}
+  .reserve__in h2{font-family:var(--mn);font-weight:500;margin-top:6px;
+    font-size:clamp(20px,2.1vw,26px);letter-spacing:.22em;line-height:1.6}
+  .reserve__btn{display:inline-block;margin-top:var(--s2);
+    background:var(--brand);color:#fff;border-radius:var(--r);
+    padding:19px 54px;font-size:16px;letter-spacing:.2em;line-height:1.5;
+    transition:background-color .3s ease}
+  .reserve__btn:hover{background:var(--b-70)}
+  
+  .reserve__ask{margin-top:var(--s3);font-size:12.5px;color:var(--ink-soft);
+    letter-spacing:.06em}
+  .reserve__tel{margin-top:4px;font-family:var(--en);
+    font-size:clamp(20px,2.2vw,26px);letter-spacing:.06em;color:var(--brand)}
+  .reserve__hours{margin-top:6px;font-size:12px;color:var(--ink-soft)}
+
+  
+  footer{margin-top:var(--s5);border-top:1px solid var(--b-16);
+    padding:var(--s3) 4vw var(--s4);text-align:center}
+  footer .f-name{font-family:var(--mn);font-size:17px;letter-spacing:.14em}
+  footer .f-en{display:block;font-family:var(--en);font-size:10px;
+    letter-spacing:.24em;color:var(--b-55);margin-top:4px}
+  footer p{margin-top:var(--s1);font-size:12.5px;line-height:1.95;
+    color:var(--ink-soft)}
+  footer small{display:block;margin-top:var(--s2);font-family:var(--en);
+    font-size:10px;letter-spacing:.22em;color:var(--b-55)}
+
+  
+  .sp-bar{display:none}
+  @media(max-width:1180px){
+    nav{display:none}                       
+  }
+  @media(max-width:980px){
+    .htel{display:none}                     
+  }
+  @media(max-width:960px){
+    .hero__in{flex-direction:column;gap:var(--s3)}
+    .hero__panel{width:100%}
+    .hero__ph{width:100%;max-width:520px;aspect-ratio:4/3;align-self:center}
+    .reason{flex-direction:column;gap:var(--s3)}
+    .reason__ph{width:100%;max-width:560px}
+    .doctor{flex-direction:column;gap:var(--s3)}
+    .doctor__ph{width:60%;max-width:280px}
+    .access{flex-direction:column;gap:var(--s3)}
+    .access__info,.access__map{width:100%;flex:none}
+    .steps{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:900px){
+    .cards{grid-template-columns:repeat(2,1fr)}
+  }
+  @media(max-width:820px){
+    a[href^="tel:"]{pointer-events:auto;cursor:pointer}   
+    
+    .brand__en{display:none}
+    .brand__jp{max-width:56vw;overflow:hidden;text-overflow:ellipsis;
+      font-size:clamp(14px,3.6vw,18px)}
+    .hcta{padding:11px 16px}
+    .sp-bar{display:flex;position:fixed;inset:auto 0 0 0;z-index:60}
+    .sp-bar a{flex:1;text-align:center;padding:14px 0;font-size:13px;
+      letter-spacing:.14em;color:#fff;background:var(--brand)}
+    .sp-bar a+a{border-left:1px solid rgba(255,255,255,.3)}
+    body{padding-bottom:50px}
+    .reserve__in{padding:var(--s3) 5vw}
+    .reserve__btn{padding:17px 12vw}
+  }
+  @media(max-width:600px){
+    .cards{grid-template-columns:1fr}
+    .steps{grid-template-columns:1fr}
+    .rows>div{display:block;padding:9px 2px}
+    .rows dt{flex:none}
+  }
+  @media(max-width:400px){
+    
+    header{gap:10px}
+    .brand__jp{max-width:50vw}
+  }
+  
+  @media(max-width:480px){
+    .tt{font-size:11px}
+    .tt th,.tt td{padding:6px 1px}
+    .tt tbody th{padding-left:6px}
+    .tt__t{font-size:10px}
+    .tt tbody td{font-size:12px}
+  }
+  @media(max-width:370px){
+    .tt{font-size:10px}
+    .tt th,.tt td{padding:5px 0}
+    .tt__t{font-size:9px}
+    .tt tbody td{font-size:11px}
+  }
+
+  
+  
+  .js .fade-up{opacity:0;transform:translate3d(0,20px,0);
+    transition:opacity .8s ease,transform .8s ease}
+  .js .fade-up.show{opacity:1;transform:none}
+  .js .dur1{transition-delay:.08s}
+  .js .dur2{transition-delay:.16s}
+  .js .dur3{transition-delay:.24s}
+
+  @media(prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}
+    
+    .js .fade-up{opacity:1;transform:none}
+    html{scroll-behavior:auto}
+  }
+
+  
+  .lead .t-slot,.menu-note .t-slot,.card p .t-slot,
+  
+  @media(max-width:820px){}
+  .spec{max-width:1080px;margin:var(--s5) auto var(--s3);padding:30px 4vw;
+    border:1px dashed var(--slot-line);background:var(--slot-bg);
+    font-size:12.5px;line-height:2;color:var(--ink);overflow-x:auto}
+  .spec h3{font-size:13px;letter-spacing:.2em;margin-bottom:10px}
+  
+  .spec strong,.spec code{display:inline-block}
+  .spec table{border-collapse:collapse;width:100%;margin:10px 0}
+  .spec td,.spec th{border:1px solid var(--b-30);padding:5px 12px;
+    text-align:left;font-weight:normal;font-size:12px}
+
+
+.ph::after,.ph::before{content:none!important;display:none!important}
+.ph{border:0!important;background:transparent!important}
+.ph>img,.ph .slide>img{width:100%;height:100%;object-fit:cover;display:block}
+.ph .slide{background-size:cover;background-position:center}
+</style>
+
+<script>document.documentElement.classList.add('js')</script>
+<meta name="description" content="フラワーショップのトーキョーハナリズム。日本、〒166-0004 東京都杉並区阿佐谷南１丁目１３−１１にて営業中。お気軽にお問い合わせください。">
+<meta property="og:title" content="トーキョーハナリズム">
+<meta property="og:description" content="フラワーショップのトーキョーハナリズム。日本、〒166-0004 東京都杉並区阿佐谷南１丁目１３−１１">
+<meta property="og:type" content="website">
+<meta name="robots" content="noindex, nofollow">
+<link rel="canonical" href="./">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "LocalBusiness", "name": "トーキョーハナリズム", "address": {"@type": "PostalAddress", "streetAddress": "日本、〒166-0004 東京都杉並区阿佐谷南１丁目１３−１１"}, "telephone": "03-6383-1149"}</script>
+<style>
+nav.vbar{position:relative !important;z-index:10000 !important;display:block !important;
+  background:#1c1c1c !important;color:#fff !important;margin:0 !important;
+  padding:12px 0 !important;font-size:13px !important;line-height:1.7 !important;
+  font-family:sans-serif !important;max-width:none !important;
+  opacity:1 !important;visibility:visible !important;transform:none !important}
+nav.vbar .vbar__inner{max-width:1080px !important;margin:0 auto !important;
+  padding:0 20px !important;display:flex !important;flex-wrap:wrap !important;
+  gap:10px 18px !important;align-items:center !important;width:auto !important}
+nav.vbar .vbar__note{opacity:.75 !important;flex:1 1 260px !important;
+  min-width:0 !important;color:#fff !important}
+nav.vbar .vbar__list{display:flex !important;flex-wrap:wrap !important;gap:8px !important;
+  list-style:none !important;margin:0 !important;padding:0 !important}
+nav.vbar .vbar__list li{display:block !important;margin:0 !important;padding:0 !important;
+  list-style:none !important;width:auto !important}
+nav.vbar .vbar__link{display:inline-block !important;color:#fff !important;
+  text-decoration:none !important;padding:6px 14px !important;font-size:13px !important;
+  border-radius:999px !important;box-shadow:inset 0 0 0 1px rgba(255,255,255,.4) !important;
+  background:transparent !important;opacity:1 !important;visibility:visible !important;
+  transform:none !important;letter-spacing:normal !important}
+nav.vbar .vbar__link[aria-current]{background:#fff !important;color:#1c1c1c !important;
+  font-weight:700 !important;box-shadow:none !important}
+@media (max-width:520px){
+  nav.vbar{padding:8px 0 !important;font-size:12px !important;line-height:1.5 !important}
+  nav.vbar .vbar__inner{padding:0 14px !important;gap:8px 10px !important}
+  nav.vbar .vbar__link{padding:5px 10px !important;font-size:12px !important}
+}
+#contact{padding:72px 20px}
+#contact .narrow{max-width:560px;margin:0 auto}
+#contact .cta h2{font-size:24px;margin:0 0 12px}
+#contact .cta__body{margin:0 0 24px;line-height:1.9}
+#contact .cta__actions{margin:0 0 28px}
+#contact .hero__actions{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
+#contact .form{display:grid;gap:18px;text-align:left}
+#contact .field{display:grid;gap:8px}
+#contact .field label{font-size:14px;font-weight:700}
+#contact .field input,#contact .field textarea{font:inherit;color:#1c1c1c;
+  background:#fff;border:1px solid rgba(0,0,0,.3);border-radius:6px;padding:12px 14px}
+#contact .field textarea{min-height:150px;resize:vertical}
+#contact .btn{display:inline-flex;align-items:center;gap:8px;font:inherit;
+  color:#fff;background:#1c1c1c;border:0;border-radius:6px;padding:14px 26px;
+  text-decoration:none;cursor:pointer}
+#contact .btn--ghost{color:#1c1c1c;background:transparent;
+  box-shadow:inset 0 0 0 1.5px #1c1c1c}
+#contact .ic{flex:none}
+#contact .form__note{font-size:12px;opacity:.7;margin:0}
+#contact .form__done{display:none}
+/* 値の入らなかった任意欄は行ごと畳む（テンプレの「無ければ行ごと削る」の実装。
+   :has() 非対応のブラウザでは従来どおり空欄が残るだけで、悪化はしない） */
+dd:empty{display:none !important}
+div:has(> dd:empty){display:none !important}
+#privacy-policy{padding:56px 20px;font-size:13px;line-height:2}
+#privacy-policy .narrow{max-width:720px;margin:0 auto}
+#privacy-policy h2{font-size:18px;margin:0 0 16px}
+#privacy-policy h3{font-size:14px;margin:20px 0 6px}
+</style>
+</head>
+<body id="top">
+<nav class="vbar" aria-label="デザイン案の切り替え"><div class="wrap vbar__inner"><span class="vbar__note">エレノアがトーキョーハナリズム様へのご提案として作成した見本です。トーキョーハナリズム様ご自身が公開されているものではありません。</span><ul class="vbar__list"><li><a class="vbar__link" href="../">1　誠実な開示</a></li><li><a class="vbar__link" href="./" aria-current="page">2　通いやすさ</a></li><li><a class="vbar__link" href="../3/">3　動きで魅せる（リッチプラン専用デザイン）</a></li></ul></div></nav>
+
+
+<header>
+  <a class="brand" href="#top">
+    <span class="brand__jp">
+      トーキョーハナリズム
+    </span>
+    <span class="brand__en">
+      TOKYO HANA RHYTHM
+    </span>
+  </a>
+  <nav>
+    <a href="#treatment">診療案内</a>
+    <a href="#reason">通いやすさ</a>
+    <a href="#first">初めての方へ</a>
+    <a href="#access">アクセス</a>
+  </nav>
+  <div class="hgroup">
+    <span class="htel">
+      <span class="htel__name">診療のご予約</span>
+      <a class="htel__no" href="tel:0300000000">お電話でご相談ください</a>
+    </span>
+    <a class="hcta" href="#reserve">WEB予約</a>
+  </div>
+</header>
+
+<main>
+
+  
+  <div class="hero">
+    <div class="hero__in">
+      <div class="hero__panel">
+        <p class="hero__eyebrow">
+          TOKYO HANA RHYTHM｜杉並区阿佐谷南の花屋
+        </p>
+        <h1 class="hero__catch">
+          <span class="ln"><span class="np">阿佐谷の街に</span><span class="np">花のリズムを</span></span><span class="ln"><span class="np">今日の一輪から</span><span class="np">記念日の花束まで</span></span>
+        </h1>
+        <p class="lead fade-up">
+          <span class="np">東京都杉並区阿佐谷南の</span><span class="np">フラワーショップです。</span><span class="np">花束やアレンジメント、</span><span class="np">鉢植えや観葉植物を、</span><span class="np">ご用途とご予算をうかがいながら</span><span class="np">一点ずつお作りしています。</span>
+        </p>
+
+        <ul class="badges fade-up dur1">
+          <li class="badge">
+            杉並区阿佐谷南の<b>花屋</b>
+          </li>
+          <li class="badge">
+            <b>花束・アレンジメント</b>を制作
+          </li>
+          <li class="badge">
+            <b>ご予算に合わせて</b>お作りします
+          </li>
+          <li class="badge">
+            <b>水曜定休</b>／日曜は18時まで
+          </li>
+        </ul>
+
+        <div class="tt-wrap fade-up dur2">
+          <span class="band">診療時間</span>
+          <table class="tt">
+            <thead>
+              <tr>
+                <th scope="col">受付時間</th>
+                <th scope="col">月</th><th scope="col">火</th><th scope="col">水</th>
+                <th scope="col">木</th><th scope="col">金</th><th scope="col">土</th>
+                <th scope="col">日</th><th scope="col">祝</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th scope="row">午前<span class="tt__t">開店</span></th>
+                <td>10:00</td>
+                <td>10:00</td>
+                <td>—</td>
+                <td>10:00</td>
+                <td>10:00</td>
+                <td>10:00</td>
+                <td>10:00</td>
+                <td>—</td>
+              </tr>
+              <tr>
+                <th scope="row">午後<span class="tt__t">閉店</span></th>
+                <td>19:00</td>
+                <td>19:00</td>
+                <td>—</td>
+                <td>19:00</td>
+                <td>19:00</td>
+                <td>19:00</td>
+                <td>18:00</td>
+                <td>—</td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="tt-legend">
+            「—」は定休日です。祝日の営業はお電話でお問い合わせください。
+          </p>
+          <ul class="tt-notes">
+            <li>水曜日は定休日です。</li>
+            <li>日曜日は18時00分に閉店します。</li>
+            <li></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="hero__ph ph"><img src="https://images.unsplash.com/photo-1781617320946-7d4978abbba8?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8M3x8YnVzaW5lc3MlMjBpbnRlcmlvciUyMHN0b3JlZnJvbnQlMjBleHRlcmlvcnxlbnwxfDF8fHwxNzg3MjM4NjE4fDA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="診療室・受付 or 外観" loading="eager" fetchpriority="high" decoding="async"></div>
+    </div>
+  </div>
+
+  
+  <section id="treatment" class="block gap">
+    <div class="sec-head fade-up">
+      <span class="en">TREATMENT</span>
+      <h2>
+        <span class="np">お取り扱いしている</span><span class="np">花と商品</span>
+      </h2>
+    </div>
+    <ul class="cards">
+      <li class="card fade-up">
+        <span class="en">BOUQUET</span>
+        <h3>花束</h3>
+        <p><span class="np">ご用途とご予算をうかがい、</span><span class="np">その日の花の中から</span><span class="np">お選びしてお包みします。</span><span class="np">お渡しの時間もご相談ください。</span></p>
+      </li>
+      <li class="card fade-up dur1">
+        <span class="en">ARRANGEMENT</span>
+        <h3>アレンジメント</h3>
+        <p><span class="np">器に生けてお渡しするため、</span><span class="np">受け取った方がそのまま飾れます。</span><span class="np">置く場所の広さをお伝えいただくと</span><span class="np">大きさをお合わせできます。</span></p>
+      </li>
+      <li class="card fade-up dur2">
+        <span class="en">GIFT</span>
+        <h3>ギフト・お祝いの花</h3>
+        <p><span class="np">お誕生日や記念日、</span><span class="np">開店や送別のお花など、</span><span class="np">贈る相手やご用途にあわせて</span><span class="np">花と色をお選びします。</span></p>
+      </li>
+      <li class="card fade-up">
+        <span class="en">PLANTS</span>
+        <h3>鉢植え・観葉植物</h3>
+        <p><span class="np">鉢でお育ていただく植物です。</span><span class="np">置き場所の日当たりをうかがい、</span><span class="np">お世話のしかたを添えてお渡しします。</span></p>
+      </li>
+      <li class="card fade-up dur1">
+        <span class="en">ARRANGEMENT FOR CONDOLENCE</span>
+        <h3>お供えの花</h3>
+        <p><span class="np">ご法要やお供えの花も承ります。</span><span class="np">お届け先の慣習やご希望があれば</span><span class="np">お聞かせください。</span><span class="np">色あわせを整えてお作りします。</span></p>
+      </li>
+      <li class="card fade-up dur2">
+        <span class="en">DAILY FLOWERS</span>
+        <h3>ふだんの花・一輪から</h3>
+        <p><span class="np">一輪からお求めいただけます。</span><span class="np">食卓や玄関に飾る花を、</span><span class="np">その日の入荷の中からお選びします。</span></p>
+      </li>
+    </ul>
+    
+    <p class="menu-note fade-up">
+      <span class="np">お花の価格は、</span><span class="np">花の種類と本数、</span><span class="np">大きさによって変わります。</span><span class="np">ご予算をお伝えいただければ、</span><span class="np">その範囲でお作りします。</span><span class="np">店頭またはお電話で、</span><span class="np">お作りする内容をご説明します。</span>
+    </p>
+  </section>
+
+  
+  <section id="reason" class="block gap">
+    <div class="sec-head fade-up">
+      <span class="en">REASON</span>
+      <h2>
+        <span class="np">当店でお選びいただく</span><span class="np">三つの理由</span>
+      </h2>
+    </div>
+    <div class="reason">
+      <div class="reason__ph ph"><img src="https://images.unsplash.com/photo-1600508772927-723e3ba305c5?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8M3x8YnVzaW5lc3MlMjBpbnRlcmlvciUyMGludGVyaW9yfGVufDF8MHx8fDE3ODcyMzcyNzN8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="待合・院内" loading="lazy" decoding="async"></div>
+      <ul class="reason__list">
+        <li class="fade-up">
+          <span class="reason__no">01</span>
+          <h3>予算から相談できる</h3>
+          <p><span class="np">ご予算をうかがってから、</span><span class="np">花と本数をお選びします。</span><span class="np">金額の目安は</span><span class="np">その場でお伝えします。</span></p>
+        </li>
+        <li class="fade-up dur1">
+          <span class="reason__no">02</span>
+          <h3>用途に合わせて作る</h3>
+          <p><span class="np">贈る相手やお渡しの場面を</span><span class="np">お聞かせいただき、</span><span class="np">色あわせと大きさを</span><span class="np">그에 合わせてお作りします。</span></p>
+        </li>
+        <li class="fade-up dur2">
+          <span class="reason__no">03</span>
+          <h3>一輪から選べる</h3>
+          <p><span class="np">贈りものだけでなく、</span><span class="np">ふだん飾る花も</span><span class="np">一輪からお選びいただけます。</span><span class="np">気軽にお立ち寄りください。</span></p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  
+  <section id="first" class="block gap">
+    <div class="sec-head fade-up">
+      <span class="en">FIRST VISIT</span>
+      <h2>
+        <span class="np">ご来店からお渡しまでの</span><span class="np">四つの流れ</span>
+      </h2>
+    </div>
+    <ol class="steps">
+      <li class="step fade-up">
+        <span class="no">01</span>
+        <h3>ご相談</h3>
+        <p>ご用途とご予算、お渡しの日時をおうかがいします。</p>
+      </li>
+      <li class="step fade-up dur1">
+        <span class="no">02</span>
+        <h3>花選び</h3>
+        <p>その日入荷している花から、色あわせをご相談します。</p>
+      </li>
+      <li class="step fade-up dur2">
+        <span class="no">03</span>
+        <h3>お作りします</h3>
+        <p>花束またはアレンジメントに仕立て、お包みします。</p>
+      </li>
+      <li class="step fade-up dur3">
+        <span class="no">04</span>
+        <h3>お渡し</h3>
+        <p>店頭でお渡しします。お持ち帰りの時間もご相談ください。</p>
+      </li>
+    </ol>
+  </section>
+
+  
+  <section id="doctor" class="block gap">
+    <div class="sec-head fade-up">
+      <span class="en">DOCTOR</span>
+      <h2>
+        <span class="np">季節の花を</span><span class="np">束ねる</span><span class="np">阿佐谷南の花店</span>
+      </h2>
+    </div>
+    <div class="doctor">
+      <div class="doctor__ph ph"><img src="https://images.unsplash.com/photo-1556586038-29f26c3ceb20?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8M3x8YnVzaW5lc3MlMjBpbnRlcmlvciUyMGludGVyaW9yfGVufDF8MXx8fDE3ODcyMzg2MTV8MA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="院長" loading="lazy" decoding="async"></div>
+      <div class="doctor__body">
+        <span class="band">院長</span>
+        <p class="doctor__name">
+          店主
+        </p>
+        <p class="fade-up">
+          <span class="np">杉並区阿佐谷南で</span><span class="np">花をお売りしています。</span><span class="np">花は毎日おなじ顔ではなく、</span><span class="np">その日に届いたものの中から</span><span class="np">いちばん良い状態のものを</span><span class="np">お選びしています。</span><span class="np">ご用途とご予算をうかがって、</span><span class="np">一点ずつお作りしますので、</span><span class="np">どうぞお気軽にご相談ください。</span>
+        </p>
+        <dl class="rows fade-up dur1">
+          <div><dt>経歴</dt><dd>—</dd></div>
+          <div><dt>所属</dt><dd></dd></div>
+          <div><dt>資格</dt><dd>—</dd></div>
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  
+  <section id="access" class="block gap">
+    <div class="sec-head fade-up">
+      <span class="en">ACCESS</span>
+      <h2>
+        <span class="np">店舗のご案内と</span><span class="np">アクセス</span>
+      </h2>
+    </div>
+    <div class="access">
+      <div class="access__info fade-up">
+        <dl class="rows">
+          <div><dt>住所</dt><dd>東京都杉並区阿佐谷南１丁目１３−１１</dd></div>
+          <div><dt>最寄駅</dt><dd>—</dd></div>
+          <div><dt>駐車場</dt><dd></dd></div>
+          <div><dt>予約の電話</dt><dd><a class="tel-no" href="tel:0300000000">お電話でご相談ください</a></dd></div>
+          <div><dt>訪問診療の電話</dt><dd></dd></div>
+          <div><dt>電話の受付</dt><dd>03-6383-1149 10:00〜19:00</dd></div>
+          <div><dt>休診日</dt><dd>水曜日</dd></div>
+        </dl>
+      </div>
+      <div class="access__map ph"><img src="https://images.unsplash.com/photo-1763971052610-de1850d1a6d5?crop=entropy&amp;cs=tinysrgb&amp;fit=max&amp;fm=jpg&amp;ixid=M3wxMDIzODQyfDB8MXxzZWFyY2h8Nnx8YnVzaW5lc3MlMjBpbnRlcmlvciUyMHN0b3JlZnJvbnQlMjBleHRlcmlvcnxlbnwxfDB8fHwxNzg3MjM3NTc5fDA&amp;ixlib=rb-4.1.0&amp;q=80&amp;w=1080" alt="外観" loading="lazy" decoding="async"></div>
+    </div>
+  </section>
+
+  
+  <section id="reserve" class="reserve gap">
+    <div class="reserve__in fade-up">
+      <span class="en">RESERVATION</span>
+      <h2>
+        <span class="np">ご相談・</span><span class="np">ご注文について</span>
+      </h2>
+      <a class="reserve__btn" href="#reserve" aria-label="WEBから予約する"><span>WEB予約へ進む</span></a>
+      <p class="reserve__ask">
+        03-6383-1149
+      </p>
+      <p class="reserve__tel">
+        <a href="tel:0300000000">お電話でご相談ください</a>
+      </p>
+      <p class="reserve__hours">
+        03-6383-1149 10:00〜19:00
+      </p>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <span class="f-name">
+    トーキョーハナリズム
+    <span class="f-en">TOKYO HANA RHYTHM</span>
+  </span>
+  <p>
+    東京都杉並区阿佐谷南１丁目１３−１１
+  </p>
+  <p>
+    月・火・木・金・土 10:00〜19:00／日 10:00〜18:00／水曜定休
+  </p>
+  <small>© TOKYO HANA RHYTHM</small>
+</footer>
+
+<div class="sp-bar">
+  <a href="tel:0300000000">電話で予約</a>
+  <a href="#reserve">WEB予約</a>
+</div>
+
+<script>
+  // スクロール出現（IntersectionObserver 1つ）。写真スロットは対象に含めない
+  var io = new IntersectionObserver(function(es){
+    es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('show'); io.unobserve(e.target); } });
+  },{threshold:.12});
+  document.querySelectorAll('.fade-up').forEach(function(el){ io.observe(el); });
+
+</script>
+<p class="photo-credit" style="font-size:11px;text-align:center;padding:12px 16px;margin:0">Photo by <a href="https://unsplash.com/@haberdoedas?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Haberdoedas</a>、<a href="https://unsplash.com/@myhq?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">myHQ Workspaces</a>、<a href="https://unsplash.com/@andreaedavis?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Andrea Davis</a>、<a href="https://unsplash.com/@skstrannik?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Sergej *****</a> on <a href="https://unsplash.com/?utm_source=Eleanor+LP+Studio&utm_medium=referral" target="_blank" rel="noopener">Unsplash</a></p>
+<section id="privacy-policy" class="legal">
+  <div class="narrow">
+    <h2>プライバシーポリシー</h2>
+    <p>トーキョーハナリズム（所在地：日本、〒166-0004 東京都杉並区阿佐谷南１丁目１３−１１）は、お客様の個人情報保護に努めます。</p>
+    <h3>収集する情報</h3>
+    <p>お問い合わせフォームより氏名・メールアドレス・お問い合わせ内容を収集します。</p>
+    <h3>Cookieと解析ツール</h3>
+    <p>当サイトはGoogle Analytics・Microsoft Clarityを使用してアクセス解析を行っています。これらのツールはCookieを使用します。</p>
+    <h3>お問い合わせ</h3>
+    <p>個人情報に関するお問い合わせは contact@eleanor-dev.com までご連絡ください。</p>
+  </div>
+</section>
+<div id="cookie-banner" style="display:none;position:fixed;bottom:0;left:0;right:0;background:#333;color:#fff;padding:12px 20px;z-index:9999;text-align:center;font-size:14px;">
+  本サイトはGoogle Analytics・Microsoft Clarityを使用しています。
+  <a href="#privacy-policy" style="color:#adf;">プライバシーポリシー</a>
+  <button onclick="document.getElementById('cookie-banner').style.display='none';localStorage.setItem('cookie_ok','1')" style="margin-left:16px;background:#3498db;color:#fff;border:none;padding:6px 16px;cursor:pointer;border-radius:4px;">同意する</button>
+</div>
+<script>if(!localStorage.getItem('cookie_ok'))document.getElementById('cookie-banner').style.display='block';</script>
+<script data-vbar-offset>
+(function(){
+  var bar = document.querySelector('nav.vbar');
+  if (!bar) return;
+  var pinned = [];
+  var scan = function(){
+    pinned = [];
+    var all = document.body.querySelectorAll('*');
+    for (var i = 0; i < all.length; i++) {
+      var el = all[i];
+      if (el === bar || bar.contains(el)) continue;
+      var cs = getComputedStyle(el);
+      if (cs.position !== 'fixed') continue;
+      /* 元の top は一度だけ測って覚える。再スキャンで**自分が書いた値**を
+         読むと「top が 60 を超えたから対象外」と判定してしまい、
+         下げたきり追随が止まる（2026-08-15 実測） */
+      var top = el.__vbarTop;
+      if (top === undefined) {
+        top = parseFloat(cs.top);
+        if (isNaN(top) || top > 60) continue;
+        el.__vbarTop = top;
+      }
+      if (el.getBoundingClientRect().height >= innerHeight * 0.9) continue;
+      pinned.push({el: el, top: top});
+    }
+  };
+  var sync = function(){
+    var d = Math.max(0, bar.getBoundingClientRect().bottom);
+    for (var i = 0; i < pinned.length; i++) {
+      pinned[i].el.style.top = (pinned[i].top + d) + 'px';
+    }
+  };
+  var refresh = function(){ scan(); sync(); };
+  addEventListener('scroll', sync, {passive: true});
+  addEventListener('resize', refresh);
+  addEventListener('load', refresh);
+  refresh();
+})();
+</script>
+</body>
+</html>
